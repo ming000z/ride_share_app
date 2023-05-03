@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>Begin order? </h1>
+<form method="POST"> 
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="Begin Trip"/>
+</form>
+&emsp; <button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Back</button>
+
+{% endblock%}

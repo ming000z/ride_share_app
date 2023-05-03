@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<h1>This is order detail page</h1>
+
+<h1>destination: {{ object.destination }}</h1>
+<p>arrival time: {{ object.arrival_time }}</p>
+<p>Total Passenger: {{ object.total_passenger }}</p>
+<p>Share: {{ object.can_share }}</p>
+
+{% for share in object.share_ids %}
+  <p>share: {{ share }}</p>
+{% endfor %}
+<p>Trip status: {{ object.get_trip_status_display}}</p>
+
+<a href="{% url 'main:main-home'%}">Back to home page</a>
+
+
+
+{% endblock%}

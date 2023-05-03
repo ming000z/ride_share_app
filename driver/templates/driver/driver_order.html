@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<h1>This is your available order list page</h1>
+
+  {% if open_order %}
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Arrive Time</th>
+      <th>View & Take</th>
+    </tr>
+{% for order in open_order %}
+<tr>
+  <td>&emsp;{{ order.destination }}&emsp;</td>
+  <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+  <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-accpet-order' order.id %}'">Take</button></td>
+</tr>
+{% endfor %}
+{% else %}
+
+<p>  currently you do not open order </p>
+
+{% endif %}
+</table>
+<br>
+&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Back</button>
+
+{% endblock%}

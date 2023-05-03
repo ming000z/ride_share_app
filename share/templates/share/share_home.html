@@ -1,0 +1,21 @@
+
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>Search Home </h1>
+<form action="{% url 'share:share-search-result' %}" method="get">
+  <input name="des" type="text" placeholder="destination...">
+  <br>
+  <br>
+  Earliest arrival time: <input name="earliest-time" type="datetime-local">
+  <br>
+  <br>
+  Latest arrival time: <input name="latest-time" type="datetime-local">
+  <br>
+  <br>
+  <input type="submit" value="Search"/>
+</form>
+
+{% endblock%}
+
+

@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>Confirmation Email sent to rider </h1>
+
+&emsp; <button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'"> Back to Driver home</button>
+
+{% endblock%}

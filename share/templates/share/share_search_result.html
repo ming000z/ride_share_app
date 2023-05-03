@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>Search Page</h1>
+
+
+{% if object_list %}
+  {% for order in object_list %}
+    <h1>destination: {{ order.destination }}</h1>
+    <p>arrival time: {{ order.arrival_time }}</p>
+    <p>Total Passenger: {{ order.total_passenger }}</p>
+    <p>Share: {{ order.can_share }}</p>
+    <p>Trip status: {{ order.get_trip_status_display}}</p>
+    <a href="{% url 'share:share-join' order.id %}">Join this trip</a>
+  {% endfor %}
+
+{% else %}
+    <p>No available order for you to join</p>
+    &emsp;<button type="submit" onclick="location.href='{% url 'share:share-home' %}'">Start A New Search </button>
+    &emsp;<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Home </button>
+{% endif %}
+
+{% endblock%}
+

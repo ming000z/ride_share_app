@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>This is driver profile page </h1>
+
+
+<table>
+    <tr>
+        <th>username</th>
+        <td>&emsp;{{ object.user.username }}</td>
+    </tr>
+
+    <tr>
+        <th>email</th>
+        <td>&emsp;{{ object.user.email }}</td>
+    </tr>
+
+    <tr>
+        <th>is_driver</th>
+        <td>&emsp;{{ object.is_driver }}</td>
+    </tr>
+
+    <tr>
+        <th>type</th>
+        <td>&emsp;{{ object.get_type_display }}</td>
+    </tr>
+    <tr>
+        <th>plante_num</th>
+        <td>&emsp;{{ object.plante_num }}</td>
+    </tr>
+
+    <tr>
+        <th>max_passengerd</th>
+        <td>&emsp;{{ object.max_passenger}}</td>
+    </tr>
+
+    <tr>
+        <th>special_info</th>
+        <td>&emsp;{{ object.special_info}}</td>
+    </tr>
+</table>
+&emsp; <button type="submit" onclick="location.href='{{ profile.get_update_url}}'">Edit</button>
+
+&emsp; &emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-main' user.id %}'">Back</button>
+
+{% endblock%}

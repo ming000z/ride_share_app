@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>This is driver profile signup page </h1>
+<form method="POST"> 
+  {% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" valud="Save"/>
+</form>
+<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Main page</button>
+
+{% endblock%}

@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<h1>This is order list page</h1>
+
+{% for obj in object_list %}
+  <p>{{ obj.id }} - <a href="{% url 'order:order-detail' obj.id %}"> {{ obj.destination}} </a></p>
+{% endfor %}
+
+<a href="{% url 'main:main-home' %}">Back to Main page</a>
+
+{% endblock%}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+
+<h1>This is user order detail page</h1>
+
+<table>
+    <tr>
+        <th>Destination</th>
+        <td>&emsp;{{ orders.destination }}</td>
+    </tr>
+
+    <tr>
+        <th>Arrival Time</th>
+        <td>&emsp;{{ orders.arrival_time }}</td>
+    </tr>
+
+    <tr>
+        <th>Total Passenger</th>
+        <td>&emsp;{{ orders.total_passenger }}</td>
+    </tr>
+
+    <tr>
+        <th>Share</th>
+        <td>&emsp;{{ orders.can_share }}</td>
+    </tr>
+    <tr>
+        <th>Trip status:</th>
+        <td>&emsp;{{ orders.get_trip_status_display}}</td>
+    </tr>
+
+
+
+{% if orders.trip_status is 2 %}
+<tr>
+    <th>Driver name</th>
+    <td>&emsp;{{driver.username}}</td>
+</tr>
+<tr>
+    <th>car type</th>
+    <td>&emsp;{{ profile.get_type_display}}</td>
+</tr>
+<tr>
+    <th>car plant</th>
+    <td>&emsp;{{ profile.plante_num}}</td>
+</tr>
+<tr>
+    <th>special_info</th>
+    <td>&emsp;{{ profile.special_info}}</td>
+</tr>
+{% endif %}
+
+
+</table>
+
+<br>
+{% if orders.trip_status is 1 %}
+&emsp;<button type="submit" onclick="location.href='{% url 'usr:usr-order-update'  orders.id%}'">Edit </button>&emsp;
+
+{% endif %}
+
+
+&emsp;<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Main page</button>
+
+{% endblock%}

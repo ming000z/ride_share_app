@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block navbar %}
+<h1>This is driver home page </h1>
+<h2>Hi driver: {{ object.user }}</h2> 
+<button type="submit" onclick="location.href='{% url 'driver:driver-profile' object.user.id %}'">Edit Driver profile</button>
+&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-find' %}'">Get More orders</button>
+
+{% if driver_in_trip_order %}
+  <button type="submit" disabled>You can't inactive right now</button>
+{% else %}
+  <button type="submit" onclick="location.href='{% url 'driver:driver-inactive' object.user.id %}'">Inactive</button>
+{% endif %}
+
+<h2>Confirmed order</h2>
+
+{% if driver_confirm_order %}
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Arrive Time</th>
+      <th>View Detail</th>
+      <th>Start this Order</th>
+
+    </tr>
+    {% for order in driver_confirm_order %}
+    <tr>
+      <td>&emsp;{{ order.destination }}&emsp;</td>
+      <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'order:order-detail' order.id %}'">View Detail </button>&emsp;</td>
+      {% if driver_in_trip_order %}
+      <td>&emsp;<button type="submit" disabled>can't start a new trip </button>&emsp;</td>
+      {% else %}
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-begin-order' order.id %}'">Start this tirp </button>&emsp;</td>
+      {% endif %}
+      
+    </tr>
+    {% endfor %}
+  </table>
+{% else %}
+  <p>&emsp;Currently you do not have any confirmed order</p>
+{% endif %}
+
+<br>
+<br>
+<br>
+<h2>In Trip order</h2>
+<table>
+{% if driver_in_trip_order %}
+  <table>
+    <tr>
+      <th>Destination</th>
+      <th>Arrive Time</th>
+      <th>Mark As Complete</th>
+    </tr>
+
+  {% for order in driver_in_trip_order %}
+    <tr>
+      <td>&emsp;{{ order.destination }}&emsp;</td>
+      <td>&emsp;{{ order.arrival_time }}&emsp;</td>
+      <td>&emsp;<button type="submit" onclick="location.href='{% url 'driver:driver-complete-order' order.id %}'"> View to complete </button>&emsp;</td></td>
+    </tr>
+  {% endfor %}
+</table>
+
+{% else %}
+    <p>&emsp;Currently you do not have any in trip order </p>
+{% endif %}
+
+<br>
+<button type="submit" onclick="location.href='{% url 'main:main-home' %}'">Back to Main page</button>
+
+{% endblock%}
